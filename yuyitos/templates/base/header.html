@@ -1,0 +1,26 @@
+{% load static %}
+<header>
+  <nav class="nav-wrapper blue darken-1">
+    <div class="container">
+      <a class='brand-logo' href="#">Yuyitos</a>
+      <a href="#" data-target="menu-td" class='sidenav-trigger'>
+        <i class="material-icons">menu</i>
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Enlace 1</a></li>
+        <li><a href="#">Enlace 2</a></li>
+        <li><a href="#">Enlace 3</a></li>
+        <li><a href="#">Enlace 4</a></li>
+      </ul> 
+    </div>
+  </nav>
+  <ul class="sidenav grey darken-4" id="menu-td">
+        <li><a class="white-text" href="#"><i class="material-icons white-text">home</i> Inicio</a></li>
+        <li><a class="white-text" href="#"><i class="material-icons white-text">label_outline</i> Enlace 2</a></li>
+        <li><a class="white-text" href="#"><i class="material-icons white-text">label_outline</i> Enlace 3</a></li>
+        <li><a class="white-text" href="#"><i class="material-icons white-text">label_outline</i> Enlace 4</a></li>
+  </ul>
+      <div class="parallax-container">
+        <div class="parallax"><img src="{% static 'img/Index/parallax.jpg' %}"></div>
+      </div>
+</header>

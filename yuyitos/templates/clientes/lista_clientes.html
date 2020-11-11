@@ -1,0 +1,56 @@
+{% extends 'base/base.html'%}
+
+{% block titulo %}Administracion Proveedores{% endblock %}
+
+
+{% block contenido %}
+
+<div class="row">
+    <div class="col s12 m12 l12">
+            <div class="container white article-body">
+                <h3 class="center-align">Administración Proveedores</h3>
+                <div class="row">
+                    <div class="col s12">
+                        <a href="{% url 'crearCliente' %}" class="waves-effect waves-light btn-large blue lighten-1 pulse">Nuevo</a>
+                    </div>
+                </div>
+                <table class="highlight responsive-table">
+                    <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Rut</th>
+                          <th>Nombre</th>
+                          <th>Apellidos</th>
+                          <th>Direccion</th>
+                          <th>Telefono</th>
+                          <th>Correo</th>
+                          <th>Accion</th>
+                      </tr>
+                    </thead>
+            
+                    <tbody>
+                    {% for cliente in clientes %}
+                      <tr>
+                        <td>{{ cliente.id }}</td>
+                        <td>{{ cliente.rut }}</td>
+                        <td>{{ cliente.nombre }}</td>
+                        <td>{{ cliente.apellido }}</td>
+                        <td>{{ cliente.direccion }}</td>
+                        <td>{{ cliente.telefono }}</td>
+                        <td>{{cliente.correo}}</td>
+                        <td>
+                            <div class="row">
+                                <div class="col s12 m12 l12"><a href="{% url 'editarCliente' cliente.id %}" class="waves-effect waves-light btn-small green accent-4">Editar</a></div>
+                                <div class="col s12 m12 l12"><a href="{% url 'eliminarCliente' cliente.id %}" class="waves-effect waves-light btn-small red darken-4">Eliminar</a></div>
+                            </div>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

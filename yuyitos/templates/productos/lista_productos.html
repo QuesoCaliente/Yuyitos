@@ -1,0 +1,56 @@
+{% extends 'base/base.html'%}
+
+{% block titulo %}Administracion Productos{% endblock %}
+
+
+{% block contenido %}
+
+<div class="row">
+    <div class="col s12 m12 l12">
+            <div class="container white article-body">
+                <h3 class="center-align">Administración Productos</h3>
+                <div class="row">
+                    <div class="col s12">
+                        <a href="{% url 'crearProducto' %}" class="waves-effect waves-light btn-large blue lighten-1 pulse">Nuevo</a>
+                    </div>
+                </div>
+                <table class="highlight responsive-table">
+                    <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Nombre</th>
+                          <th>Familia</th>
+                          <th>Precio Compra</th>
+                          <th>Precio Venta</th>
+                          <th>Marca</th>
+                          <th>Stock</th>
+                          <th>Accion</th>
+                      </tr>
+                    </thead>
+            
+                    <tbody>
+                    {% for producto in productos %}
+                      <tr>
+                        <td>{{ producto.codigo_producto }}</td>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{% for fam in producto.familia.all %} {{fam.nombre}} {% endfor %}</td>
+                        <td>{{ producto.precioCompra }}</td>
+                        <td>{{ producto.precioVenta }}</td>
+                        <td>{{ producto.marca }}</td>
+                        <td>{{ producto.stock }}</td>
+                        <td>
+                            <div class="row">
+                                <div class="col s12 m12 l12"><a href="{% url 'editarProducto' producto.id %}" class="waves-effect waves-light btn-small green accent-4">Editar</a></div>
+                                <div class="col s12 m12 l12"><a href="{% url 'eliminarProducto' producto.id  %}" class="waves-effect waves-light btn-small red darken-4">Eliminar</a></div>
+                            </div>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

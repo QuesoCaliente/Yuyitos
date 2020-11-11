@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+
+{% block titulo %} Salir - Yuyitos {% endblock titulo %}
+
+{% block contenido %}
+
+<div class="container contenido">
+    <div class="row">
+        <div class="col-lg-7 col-md-12">
+            <img width="100%" src="/media/logout.gif" alt="">
+        </div>
+        <div class="col-lg-5 col-md-12 align-self-center">
+            <p>Usted a salido Exitosamente</p>
+            <a href="{% url 'login'%}">Click aqui para ingresar nuevamente.</a>
+        </div>
+    </div>
+</div>
+
+{% endblock contenido %}

@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+
+
+{% block titulo %}Almacen Yutitos | Inicio{% endblock %}
+
+{% block contenido %}
+<div class="row">
+    <div class="col s12">
+        <div class="container white article-body">
+            <div class="row">
+                <div class="col s12 m6 l6">
+                    <a href="{% url 'listarProductos' %}" class="waves-effect waves-light btn-large btn-yuyitos">Productos</a>
+                </div>
+                <div class="col s12 m6 l6">
+                    <a href="{% url 'listarProveedores' %}" class="waves-effect waves-light btn-large btn-yuyitos">Proveedores</a>
+                </div>
+                <div class="col s12 m4 l4">
+                    <a class="waves-effect waves-light btn-large btn-yuyitos">Clientes</a>
+                </div>
+                <div class="col s12 m4 l4">
+                    <a class="waves-effect waves-light btn-large btn-yuyitos">Ventas</a>
+                </div>
+                <div class="col s12 m4 l4">
+                    <a class="waves-effect waves-light btn-large btn-yuyitos">Pagos a Credito</a>
+                </div>                 
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

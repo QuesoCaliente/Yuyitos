@@ -1,0 +1,62 @@
+.widget{
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,21,64,.1),0 10px 20px rgba(0,21,64,.05);
+    height: 300px;
+    margin-top: 2.5rem;
+}
+body{
+    background: #f2f2f2;
+}
+.main{
+    margin-top: 2.5rem;
+    background: #fff;
+}
+.widget-title{
+    color: #fff;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: 1px solid rgba(0,0,0,.1);
+    background: #3498db;
+}
+.widget-content{
+    padding: 1.5rem;
+}
+.card-title-td{
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0;
+}
+.card-content{
+    border-top:1px solid rgba(0,0,0,.1);
+}
+.card-data-td{
+    padding: 1.75rem;
+}
+.card-image img{
+    background-size: cover;
+}
+
+.titletd{
+    background:#3498db;
+    padding: 10px 10px 10px 10px;
+}
+.titletd span{
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+}
+.page-footer{
+    padding-top: 0;
+}
+.widget-content > img{
+    width: 100%;
+}
+.article-body{
+    padding: 2.5rem;
+    margin-top: 20px;
+}
+.btn-yuyitos{
+    margin: 5px;
+    width: 100%;
+}

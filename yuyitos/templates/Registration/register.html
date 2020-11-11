@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% block titulo%} Registro - MoshiMoshi  {% endblock titulo %}
+{% block contenido %}
+
+<div class="container contenido">
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+
+        <button type="reset">Limpiar</button>
+        <button type="submit">Registro</button>
+    </form>
+</div>
+
+{% endblock contenido %}
