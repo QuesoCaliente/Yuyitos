@@ -4,9 +4,12 @@ from .models import Cliente
 
 
 def ClienteView(request):
-    if request.method == 'GET':
-        clientes = Cliente.objects.all()
-        return render(request, 'clientes/lista_clientes.html', {'clientes': clientes})
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            clientes = Cliente.objects.all()
+            return render(request, 'clientes/lista_clientes.html', {'clientes': clientes})
+    else:
+        return render(request, 'base/404.html', {})
 
 def ClienteCreateView(request):
     if request.method == 'POST':

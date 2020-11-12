@@ -19,6 +19,7 @@
                       <tr>
                           <th>#</th>
                           <th>Nombre</th>
+                          <th>Fecha Vencimiento</th>
                           <th>Familia</th>
                           <th>Precio Compra</th>
                           <th>Precio Venta</th>
@@ -33,7 +34,8 @@
                       <tr>
                         <td>{{ producto.codigo_producto }}</td>
                         <td>{{ producto.nombre }}</td>
-                        <td>{% for fam in producto.familia.all %} {{fam.nombre}} {% endfor %}</td>
+                        <td>{{ producto.fecha_vencimiento }}</td>
+                        <td>{{ producto.familia }}</td>
                         <td>{{ producto.precioCompra }}</td>
                         <td>{{ producto.precioVenta }}</td>
                         <td>{{ producto.marca }}</td>

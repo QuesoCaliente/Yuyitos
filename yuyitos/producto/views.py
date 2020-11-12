@@ -5,47 +5,59 @@ from django.utils import timezone
 
 # Create your views here.
 def ProductoView(request):
-    if request.method == 'GET':
-        productos = Producto.objects.all()
-        return render(request, 'productos/lista_productos.html', {'productos': productos})
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            productos = Producto.objects.all()
+            return render(request, 'productos/lista_productos.html', {'productos': productos})
+    else:
+        return render(request, 'base/404.html', {})
 
 def ProductoCreateView(request):
-    if request.method == 'POST':
-        form = productoForm(request.POST)
-        if form.is_valid():
-            fechaVenc = form.cleaned_data['fecha_vencimiento']
-            fechaVenc = str(fechaVenc)
-            prov = form.cleaned_data['proveedor']
-            fam = form.cleaned_data['familia']
-            
-            
-            nuevo_registro = form.save()
-            nuevo_registro.codigo_producto = getProductCode(prov.id, fam.id, fechaVenc, nuevo_registro.id )
-            nuevo_registro.save()
-            return redirect('listarProductos')
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            form = productoForm(request.POST)
+            if form.is_valid():
+                fechaVenc = form.cleaned_data['fecha_vencimiento']
+                fechaVenc = str(fechaVenc)
+                prov = form.cleaned_data['proveedor']
+                fam = form.cleaned_data['familia']
+                
+                
+                nuevo_registro = form.save()
+                nuevo_registro.codigo_producto = getProductCode(prov.id, fam.id, fechaVenc, nuevo_registro.id )
+                nuevo_registro.save()
+                return redirect('listarProductos')
+        else:
+            form = productoForm()
+        return render(request, 'productos/crear.html', {'form': form})
     else:
-        form = productoForm()
-    return render(request, 'productos/crear.html', {'form': form})
+        return render(request, 'base/404.html', {})
 
 
 def ProductoEditView(request, producto_id):
-    producto = Producto.objects.get(id = producto_id)
-    if request.method == 'GET':
-        form = productoForm(instance=producto)
+    if request.user.is_superuser:
+        producto = Producto.objects.get(id = producto_id)
+        if request.method == 'GET':
+            form = productoForm(instance=producto)
+        else:
+            form = productoForm(request.POST, instance=producto)
+            if form.is_valid():
+                form.save()
+                return redirect('listarProductos')
+        return render(request, 'productos/crear.html', {'form': form} )
     else:
-        form = productoForm(request.POST, instance=producto)
-        if form.is_valid():
-            form.save()
-            return redirect('listarProductos')
-    return render(request, 'productos/crear.html', {'form': form} )
+        return render(request, 'base/404.html', {})
 
 
 def ProductoDeleteView(request, producto_id):
-    producto = Producto.objects.get(id = producto_id)
-    if request.method == 'POST':
-        producto.delete()
-        return redirect('listarProductos')
-    return render(request, 'productos/eliminar.html', {'producto': producto})
+    if request.user.is_superuser:
+        producto = Producto.objects.get(id = producto_id)
+        if request.method == 'POST':
+            producto.delete()
+            return redirect('listarProductos')
+        return render(request, 'productos/eliminar.html', {'producto': producto})
+    else:
+        return render(request, 'base/404.html', {})
         
 
 def getProductCode(proveedor, familia, fechaV, producto):
@@ -70,10 +82,14 @@ def getProductCode(proveedor, familia, fechaV, producto):
         codproducto+='00000000'
     elif day <=9 and month <=9:
         codproducto+=f'{year}0{month}0{day}'
-    elif day <=9:
+    elif day <=9 and month >=10:
         codproducto+=f'{year}{month}0{day}'
-    elif month <=9:
+    elif day >=10 and month <=9:
         codproducto+=f'{year}0{month}{day}'
+    elif day >=10 and month >=10 :
+        codproducto+=f'{year}{month}{day}'
+
+
 
     if producto<=9:
         codproducto +=f'00{producto}'

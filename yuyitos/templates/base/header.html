@@ -2,15 +2,17 @@
 <header>
   <nav class="nav-wrapper blue darken-1">
     <div class="container">
-      <a class='brand-logo' href="#">Yuyitos</a>
+      <a class='brand-logo' href="{% url 'home' %}">Yuyitos</a>
       <a href="#" data-target="menu-td" class='sidenav-trigger'>
         <i class="material-icons">menu</i>
       </a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Enlace 1</a></li>
-        <li><a href="#">Enlace 2</a></li>
-        <li><a href="#">Enlace 3</a></li>
-        <li><a href="#">Enlace 4</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="#">{{ user.username }}</a></li>
+        <li><a class='red darken-4' href="{% url 'logout' %}">logout</a></li>
+        {% else %}
+        <li><a class="blue darken-3" href="{% url 'login' %}">Ingresar</a></li>
+        {% endif %}
       </ul> 
     </div>
   </nav>

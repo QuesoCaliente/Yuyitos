@@ -4,9 +4,12 @@ from .models import Proveedor
 # Create your views here.
 
 def ProveedorView(request):
-    if request.method == 'GET':
-        proveedores = Proveedor.objects.all()
-        return render(request, 'proveedores/lista_proveedores.html', {'proveedores': proveedores})
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            proveedores = Proveedor.objects.all()
+            return render(request, 'proveedores/lista_proveedores.html', {'proveedores': proveedores})
+    else:
+        return render(request, 'base/404.html', {})
 
 def ProveedorCreateView(request):
     if request.method == 'POST':

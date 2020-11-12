@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+
+{% block titulo %}Almacen Yutitos | Error{% endblock %}
+
+{% block contenido %}
+<div class="row">
+    <div class="col s12">
+        <div class="container white article-body">
+            <div class="row">
+                <h2>No tienes Acceso Suficiente para ingresar</h2>
+                <p>Por favor <a href="{% url 'login' %}">ingresa</a> para continuar</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}
