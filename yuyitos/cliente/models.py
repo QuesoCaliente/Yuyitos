@@ -13,6 +13,7 @@ class Cliente(models.Model):
     class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
+        ordering = ['-id']
 
     def __str__(self):
         return self.rut
